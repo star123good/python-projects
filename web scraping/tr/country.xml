@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<searchresults timestamp='Mon, 11 Mar 19 18:17:41 +0000' attribution='Data © OpenStreetMap contributors, ODbL 1.0. http://www.openstreetmap.org/copyright' querystring='64.26886,20.5451565' polygon='false' exclude_place_ids='76180463' more_url='https://nominatim.openstreetmap.org/search.php?q=64.26886%2C20.5451565&amp;exclude_place_ids=76180463&amp;format=xml'>
+<place place_id='76180463' osm_type='way' osm_id='14879119' place_rank='26' boundingbox="64.2065755,64.2689052,20.5076612,20.810916" lat='64.2451652' lon='20.6608631' display_name='AC 651, Åkullsjön, Robertsfors, Västerbotten, Västerbottens län, Norrland, 915 32, Sverige' class='highway' type='secondary' importance='0.001'/></searchresults>

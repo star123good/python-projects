@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<all>
+<data>
+<eng>lanesBlocked</eng>
+<swed>Begränsad framkomlighet</swed>
+</data>
+<data>
+<eng>roadclosed</eng>
+<swed>Väg avstängd</swed>
+</data>
+</all>
