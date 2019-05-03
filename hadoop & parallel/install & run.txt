@@ -1,0 +1,68 @@
+- configure ssh :
+$su - hduser
+
+ex) 
+$su hduser
+$cd /home/hduser
+
+
+- setup ssh :
+$ssh localhost
+$ssh-keygen -t rse -P '' -f ~/.ssh/id_rsa
+$cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+$chmod 0600 ~/.ssh/authorized_keys
+
+
+- $HOME/.bashrc
+$sudo nano $HOME/.bashrc
+$source .bashrc
+
+
+
+
+
+
+ex)
+$su hduser
+$cd /usr/local/hadoop
+
+- format namenode :
+$hadoop namenode -format
+
+
+- start single-node cluster :
+$./sbin/start-all.sh
+
+$./sbin/hadoop-daemon.sh start namenode
+$./sbin/hadoop-daemon.sh start datanode
+$./sbin/yarn-daemon.sh start resourcemanager
+$./sbin/yarn-daemon.sh start nodemanager
+$./sbin/mr-jobhistory-daemon.sh start historyserver
+
+$jps
+$sudo netstat -plten | grep java
+
+
+- stop cluster
+$./sbin/stop-all.sh
+
+
+- python & input data :
+/home/hduser/mapper.py
+/home/hduser/reducer.py
+/home/hduser/input/
+
+
+- copy local data :
+$hadoop dfs -copyFromLocal /home/hduser/input/sample_input.txt /user/hduser/input
+$hadoop dfs -ls /user/hduser/input
+
+
+- run python : 
+$hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.2.0.jar -file /home/hduser/mapper.py -mapper "python3 mapper.py" -file /home/hduser/reducer.py -reducer "python3 reducer.py" -input /user/hduser/input -output /user/hduser/output
+
+
+- output retrieve : 
+$mkdir /home/hduser/output
+$hadoop dfs -getmerge /user/hduser/output /home/hduser/output
+$head /home/hduser/output
