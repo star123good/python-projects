@@ -17,10 +17,19 @@ counter = 10
 host_url = "https://www.kanald.com.tr"
 
 # default path
-default_path = "/carkifelek/bolumler"
+# default_path = "/carkifelek/bolumler"
+default_path = "/oylebirgecerzamanki/bolum"
 
 # default url
 default_url = host_url + default_path
+
+# pattern path
+# pattern_path = "/carkifelek/bolumler"
+pattern_path = "/oylebirgecerzamanki/"
+
+# page number
+# page_num = 3
+page_num = 5
 
 # set of crawled urls
 processed_urls = []
@@ -70,7 +79,7 @@ def get_link_urls(url):
     # print(html)
     for a in html.select('a'):
         # print(a['href'])
-        if(default_path in a['href'] and a['href'].count("/") == 3):
+        if(pattern_path in a['href'] and a['href'].count("/") == 3):
             processed_urls.append(a['href'])
     # print(processed_urls)
 
@@ -87,7 +96,7 @@ def process_urls(file_handler, logs_str):
     command_urls = []
     result_str = ""
     file_list = os.listdir()
-    processed_urls.reverse()
+    # processed_urls.reverse()
     
     for url in processed_urls:
         if(not(url in result_urls) and not(url in logs_str)):
@@ -99,7 +108,12 @@ def process_urls(file_handler, logs_str):
     for url in result_urls:
         if(index >= counter):
             break
+        
         content_url = get_content_url(host_url + url)
+        
+        if("/media.dogannet.tvS1/" in content_url):
+            content_url = content_url.replace("/media.dogannet.tvS1/", "/media.dogannet.tv/S1/")
+        
         if(content_url != ''):
             result_str += "\n" + url
             content_url = content_url.replace("index.m3u8", "1000/prog_index.m3u8")
@@ -118,7 +132,7 @@ def process_urls(file_handler, logs_str):
     file_handler.write(result_str)
 
 def main():
-    for page in range(3):
+    for page in range(page_num):
         url = default_url + "?page=" + (str)(page+1)
         get_link_urls(url)
 
