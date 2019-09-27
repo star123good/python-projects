@@ -1,0 +1,144 @@
+{% extends "user_base.html" %}
+{% block documentReady %} {% endblock %}
+{% block page %}
+<header class="main-header">
+    <!-- Logo -->
+    <a href="/" class="logo">
+        <span class="logo-mini"><b>P</b>O</span>
+        <span class="logo-lg"> <b>PictureOptimizer</b></span>
+    </a>
+
+    <nav class="navbar navbar-static-top">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="/static/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                        <span class="hidden-xs">{{ user.email }}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header">
+                            <img src="/static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+                            <p>
+                                {{ user.get_username }}
+
+                            </p>
+                        </li>
+
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="{% url 'logout' %}" class="btn btn-default btn-flat">Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<aside class="main-sidebar">
+    <section class="sidebar">
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="/static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>{{ user.email }}</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">
+                <h4><b></b></h4>
+            </li>
+            <li>
+                <a href="{% url 'account:account_overview' %}">
+                    <i class="fa fa-home"></i> <span>Account Overview</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'account:api_dashboard' %}">
+                    <i class="fa fa-key"></i> <span>API Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'account:file_uploader' %}">
+                    <i class="fa fa-tv"></i> <span>Web Interface PRO</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'account:plans_and_billing' %}">
+                    <i class="fa fa-cc-stripe"></i> <span>Plans and Billing</span>
+                </a>
+            </li>
+            <!--<li>
+                <a href="/">
+                    <i class="fa fa-archive"></i> <span>Optimized Archives</span>
+                </a>
+            </li>-->
+            <li>
+                <a href="{% url 'account:delivered_webhooks' %}">
+                    <i class="fa  fa-exchange"></i> <span>Delivered Webhooks</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-support"></i> <span>Contact Support</span>
+                </a>
+            </li>
+            <!--<li class="treeview">
+                <a href="#">
+                    <i class="fa fa-forward"></i> <span></span>
+                    <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href=""><i class="fa fa-circle-o"></i> </a></li>
+                    <li><a href=""><i class="fa fa-circle-o"></i></a></li>
+                    <li><a href=""><i class="fa fa-circle-o"></i></a></li>
+                </ul>
+            </li>-->
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+
+<div class="content-wrapper" style="height:100%;height: 800px;overflow:auto;">
+
+    <section class="content-header text-center" style="margin-top:20px;">
+        <h1>
+            {% block pageHeader %}{% endblock %}
+            <small>{% block pageHeaderSmall %}{% endblock %}</small>
+        </h1>
+
+    </section>
+
+    <section class="content" style="margin-top:20px;">
+
+        {% block mainContent %}{% endblock %}
+    </section>
+
+</div>
+
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+        <b>Version</b> 0.0.1
+    </div>
+    <strong>Copyright &copy; 2017 PictureOptimizer All rights
+    reserved.
+</footer>
+<div class="control-sidebar-bg"></div>
+{% endblock%}

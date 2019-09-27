@@ -1,0 +1,59 @@
+{% extends "user_base_layout.html" %}
+{% block pageHeader %}Delivered Webhooks{% endblock %}
+{% block mainContent %}
+<div class="row">
+    <div class="col-md-12 col-sm-3">
+        <div class="alert alert-success alert-dismissible text-center">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5>You are on a Free Account. To upgrade your plan level please.<a href="#">add your credit card details.</a></h5>
+        </div>
+    </div>
+</div>
+<div class="row text-center">
+
+        <div class="col-md-4">
+            <div class="box box-info" style="padding:40px">
+                <div class="box-body">
+
+                    <h4>Plan Level</h4><br>
+                    <h4><b>Free</b></h4><br>
+                    <a class="btn btn-primary btn-flat" href="{% url 'account:plans_info' %}"><i class="fa fa-gear"></i>&nbsp;&nbsp;Upgrade Plan Level</a><br>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="box box-info" style="padding:40px">
+                <div class="box-body">
+
+                    <h4>Payment Method</h4><br>
+                    <h4><b>No credit card on file</b></h4><br>
+                    <a href="{% url 'account:adding_billing_info' 'DEFAULT' %}" class="btn btn-primary btn-flat"><i class="fa fa-credit-card"></i>&nbsp;&nbsp;Adding Billing Information</a><br>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="box box-info" style="padding:40px">
+                <div class="box-body">
+                    <h4>Coupon Code</h4><br>
+                    <h4><b>No active coupon</b></h4><br>
+                    <a class="btn btn-primary btn-flat" href="{% url 'account:redeem_coupon' %}"><i class="fa fa-barcode"></i>&nbsp;&nbsp;Reading a Coupon</a><br>
+                </div>
+            </div>
+        </div>
+
+</div>
+<div class="row text-center">
+    <h3>Payment History</h3>
+</div>
+<div class="row" style="margin-top:25px">
+    <div class="col-md-12 col-sm-3">
+        <div class="alert alert-warning alert-dismissible text-center">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4>You have not made any payments yet.</h4>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block documentReady %}
+    $('#reservation').daterangepicker();
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "user_base_layout.html" %}
+{% block pageHeader %}Your API Credentials{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block mainContent %}
+<div class="row">
+    <div class="col-md-12 col-sm-3">
+        <div class="alert alert-success alert-dismissible text-center">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+            <h4><b>You must activate your account in order for your API credentials to become available</b></h4>
+            <h5>Please click on the actiavation link on the email sent to you at the time of sign up</h5>
+            <br>
+            <h4> <b>We sent a verification email to {{ user.email }}. Please follow the instruction on it</b> </h4>
+            <button class="btn btn-sm btn-primary btn-flat" style="width:200px">Resend link</button>
+        </div>
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Details:</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                            class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                            class="fa fa-times"></i></button>
+                </div>
+            </div>
+
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-1">
+                        <div style="padding:40px"><i class="fa fa-key fa-2x"></i></div>
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <h5><b>Name:</b> Default Set</h5>
+                        <h5><b>API Key:</b> --------------------------------</h5>
+                        <h5><b>API Secrete:</b> --------------------------------</h5>
+                        <h5><b>API Secrete:</b> --------------------------------</h5>
+                    </div>
+                    <div class="col-md-8">
+                    </div>
+                </div>
+            </div>
+           <!-- <div class="box-footer text-center">
+                <a href=""
+                   class="uppercase">View Details</a>
+            </div>-->
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block documentReady %}
+{% endblock %}

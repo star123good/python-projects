@@ -1,0 +1,19 @@
+{% extends 'website_base.html' %}
+{% block base_container %}
+<!-- templates/home.html -->
+<div class="background_class" style="padding: 7em 0;padding-bottom:40px;padding-top:40px;">
+  <div class="container">
+    <div class="row">
+      <h2>Buy for $5.00</h2>
+      <form action="{% url 'charge' %}" method="post">
+        {% csrf_token %}
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="{{ key }}"
+                data-description="A Django Charge"
+                data-amount="1000"
+                data-locale="auto"></script>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

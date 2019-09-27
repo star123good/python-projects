@@ -1,0 +1,163 @@
+{% extends "user_base_layout.html" %}
+{% block pageHeader %}Choose Your PictureOptimizer.com Plan{% endblock %}
+{% block mainContent %}
+<div class="row">
+    <div class="col-md-12 col-sm-3">
+        <div class="alert alert-warning alert-dismissible text-center">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4>You must first <a href="#"><b>provide your billing details</b></a> in order to select a paid plan</h4>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-success">
+            <div class="box-header with-border text-center">
+                <h3 class="box-title text-info">Billing Period:</h3>
+                <br>
+                <label class="radio-inline"><input type="radio" id="monthlyID" name="optradio" checked>MONTHLY</label>
+                <label class="radio-inline"><input type="radio" id="yearlyID" name="optradio">YEARLY</label>
+            </div>
+            <div class="box-body">
+                <table class="table table-hover" id="monthlyTable">
+                    <thead>
+                    <tr>
+                        <th>Plan Name</th>
+                        <th>Monthly Quota</th>
+                        <th class="head-price">Price</th>
+                        <th>Overage Usage</th>
+                        <th class="head-action">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr data-name="Enterprise Monthly" ng-show="showMonthlyPlans" class="">
+                        <td><strong>Enterprise</strong></td>
+                        <td>60 GB</td>
+                        <td>$79.00/month</td>
+                        <td>$1.00 per GB</td>
+                        <td><a href="/account/billing/payment">
+                            <button class="btn btn-flat btn-xs btn-info">Select This Plan</button>
+                        </a></td>
+                    </tr>
+                    <tr data-name="Premium Monthly" ng-show="showMonthlyPlans" class="">
+                        <td><strong>Premium</strong></td>
+                        <td>15 GB</td>
+                        <td>$39.00/month</td>
+                        <td>$2.00 per GB</td>
+                        <td><a href="/account/billing/payment">
+                            <button class="btn btn-flat btn-xs btn-info">Select This Plan</button>
+                        </a></td>
+                    </tr>
+                    <tr data-name="Advanced Monthly" ng-show="showMonthlyPlans" class="">
+                        <td><strong>Advanced</strong></td>
+                        <td>5 GB</td>
+                        <td>$19.00/month</td>
+                        <td>$3.00 per GB</td>
+                        <td><a href="/account/billing/payment">
+                            <button class="btn btn-flat btn-xs btn-info">Select This Plan</button>
+                        </a></td>
+                    </tr>
+                    <tr data-name="Basic Monthly" ng-show="showMonthlyPlans" class="">
+                        <td><strong>Basic</strong></td>
+                        <td>2 GB</td>
+                        <td>$9.00/month</td>
+                        <td>$4.00 per GB</td>
+                        <td><a href="/account/billing/payment">
+                            <button class="btn btn-flat btn-xs btn-info">Select This Plan</button>
+                        </a></td>
+                    </tr>
+                    <tr data-name="Micro Monthly" ng-show="showMonthlyPlans" class="">
+                        <td><strong>Micro</strong></td>
+                        <td>500 MB</td>
+                        <td>$5.00/month</td>
+                        <td>$5.00 per GB</td>
+                        <td><a href="/account/billing/payment">
+                            <button class="btn btn-flat btn-xs btn-info" >Select This Plan</button>
+                        </a></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="table table-hover hidden" id="yearlyTable">
+                    <thead>
+                    <tr>
+                        <th>Plan Name</th>
+                        <th>Monthly Quota</th>
+                        <th class="head-price">Price</th>
+                        <th>Overage Usage</th>
+                        <th class="head-action">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr data-name="Enterprise Yearly" ng-show="showYearlyPlans" class="ng-hide">
+                        <td><strong>Enterprise</strong></td>
+                        <td>60 GB</td>
+                        <td>$790.00/year</td>
+                        <td>$1.00 per GB</td>
+                        <td><a href="/account/billing/payment">
+                            <button class="btn btn-flat btn-xs btn-info">Select This Plan</button>
+                        </a></td>
+                    </tr>
+                    <tr data-name="Premium Yearly" ng-show="showYearlyPlans" class="ng-hide">
+                        <td><strong>Premium</strong></td>
+                        <td>15 GB</td>
+                        <td>$390.00/year</td>
+                        <td>$2.00 per GB</td>
+                        <td><a href="/account/billing/payment">
+                            <button class="btn btn-flat btn-xs btn-info" >Select This Plan</button>
+                        </a></td>
+                    </tr>
+                    <tr data-name="Advanced Yearly" ng-show="showYearlyPlans" class="ng-hide">
+                        <td><strong>Advanced</strong></td>
+                        <td>5 GB</td>
+                        <td>$190.00/year</td>
+                        <td>$3.00 per GB</td>
+                        <td><a href="/account/billing/payment">
+                            <button class="btn btn-flat btn-xs btn-info">Select This Plan</button>
+                        </a></td>
+                    </tr>
+                    <tr data-name="Basic Yearly" ng-show="showYearlyPlans" class="ng-hide">
+                        <td><strong>Basic</strong></td>
+                        <td>2 GB</td>
+                        <td>$90.00/year</td>
+                        <td>$4.00 per GB</td>
+                        <td><a href="/account/billing/payment">
+                            <button class="btn btn-flat btn-xs btn-info">Select This Plan</button>
+                        </a></td>
+                    </tr>
+                    <tr data-name="Micro Yearly" ng-show="showYearlyPlans" class="ng-hide">
+                        <td><strong>Micro</strong></td>
+                        <td>500 MB</td>
+                        <td>$50.00/year</td>
+                        <td>$5.00 per GB</td>
+                        <td><a href="/account/billing/payment">
+                            <button class="btn btn-flat btn-xs btn-info">Select This Plan</button>
+                        </a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-3">
+        <div class="alert alert-warning alert-dismissible text-center">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4>Upgrading the plan will have an <b>immediate effect.</b> Downgrading the plan will occur at <b>subscription renewal.</b></h4>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block documentReady %}
+    $('#reservation').daterangepicker();
+    $('input[name="optradio"]').change(function(){
+        if($('#monthlyID').prop('checked')){
+            $('#monthlyTable').removeClass('hidden');
+            $('#yearlyTable').addClass('hidden');
+        }
+        if($('#yearlyID').prop('checked')){
+            $('#monthlyTable').addClass('hidden');
+            $('#yearlyTable').removeClass('hidden');
+        }
+    });
+{% endblock %}

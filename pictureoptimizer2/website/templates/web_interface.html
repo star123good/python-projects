@@ -1,0 +1,492 @@
+{% extends 'website_base.html' %}
+{% block documentReady %}
+$("#checkAll").click(function () {
+    $(".check").prop('checked', $(this).prop('checked'));
+});
+$("#optimization_mode3").click(function () {
+    $('#expertPanel').removeClass('hidden');
+});
+$('input:radio[name="optimization_mode"]').change(function() {
+
+        if ($(this).val() == 'EXPERT') {
+            $('#expertPanel').removeClass('hidden');
+        }
+        else{
+            $('#expertPanel').addClass('hidden');
+        }
+});
+{% endblock %}
+{% block header_content %}
+<link rel="stylesheet" href="/static/dist/css/AdminLTE.min.css">
+<script src="/static/drag_drop/dropzone.js"></script>
+
+ <style>
+ .btn-lg
+ {
+    min-width: 100px;
+ }
+ .blocks .btn
+{
+    padding: 10px 10px;
+    border-radius: 0;
+    border-color: #278EEA;
+    background:white;
+    font-weight:bold;
+}
+.blocks {border-spacing:0px;}
+.box-body li
+{
+    min-height:100px;
+}
+
+.btn.active{ background-color:#278EEA; color:white;font-weight:bold;}
+.btn.active > a
+{
+    color:white;font-weight:bold;
+}
+.btn > a, .box-body > .btn
+{
+    color:#278EEA;
+}
+
+.btn-primary
+{
+    color:white;
+}
+
+.dropzone {
+  color: #ccc;
+  border-style: dashed;
+  border-color: #ccc;
+  border-width: 3px;
+  line-height: 150px;
+  text-align: center;
+  background-color:
+}
+.btn-border
+{
+    border-style: solid;
+    border-color: #278EEA;
+    border-width: 2px;
+}
+.col-border
+{
+    border-style: solid;
+    border-color: #ccc;
+    border-width: 1px;
+    min-height:150px;
+}
+.dz-progress {
+              /* progress bar covers file name */
+              display: none !important;
+            }
+        div.table {
+        display: table;
+        }
+        div.table .file-row {
+        display: table-row;
+        }
+        div.table .file-row > div {
+        display: table-cell;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+        padding: 8px;
+        }
+        div.table .file-row:nth-child(odd) {
+        background: #f9f9f9;
+        }
+        /* The total progress gets shown by event listeners */
+        #total-progress {
+        opacity: 0;
+        transition: opacity 0.3s linear;
+        }
+        /* Hide the progress bar when finished */
+        #previews .file-row.dz-success .progress {
+        opacity: 0;
+        transition: opacity 0.3s linear;
+        }
+        /* Hide the delete button initially */
+        #previews .file-row .delete {
+        display: none;
+        }
+        /* Hide the start and cancel buttons and show the delete button */
+        #previews .file-row.dz-success .start,
+        #previews .file-row.dz-success .cancel {
+        display: none;
+        }
+        #previews .file-row.dz-success .delete {
+        display: block;
+        }
+ </style>
+<script src="/static/website/js/home.js"></script>
+<link rel="stylesheet" href="/static/website/css/home.css">
+{% endblock %}
+{% block base_container %}
+    <div class="background_class" style="padding: 7em 0;padding-bottom:40px;padding-top:40px;">
+        <div class="container">
+            <div class="row">
+                <div class="text-center fh5co-heading">
+                    <h3>Free Online Image Optimizer</h3>
+                </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:40px;padding-left:60px">
+                <div class="col-md-10">
+                    <h5>Go PRO and unlock all the awesome features of <a href="{url 'feature'}">PictureOptimizer.com</a> Already a PRO member? <a href="{% url 'login' %}">Log in here.</a></h5>
+                    <h5>PictureOptimizer PRO comes with: <b>Full API Access, Web Interface PRO, WordPress and Magento Plugins</b></h5>
+                </div>
+                <div class="col-md-1">
+                    <a href="{% url 'login' %}" class="btn btn-danger" style="margin-top:20%">Get Started FREE </a>
+                </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px;margin-top:30px">
+                <div class="borders pro-features cf">
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <form class="col-md-12" id="selectPanel">
+                                <ul class="products-list product-list-in-box">
+                                    <li class="item" style="padding-top:30px">
+                                        <div class="col-md-3">
+                                            <h5>1. Select source of images</h5>
+                                        </div>
+                                        <div class="col-md-6" style="padding-left:0px;">
+                                            <div class="btn-group btn-group-justified blocks" data-toggle="buttons">
+                                                <label id="file_uploaderID" class="btn active btn-border" onClick = "window.location.href='{% url 'account:file_uploader' %}'">
+                                                    <a name="options" id="option1"> FILE UPLOADER</a>
+                                                </label>
+                                                <label id="url_pasterID" class="btn btn-border disabled">
+                                                    <a name="options" id="option2" > URL PASTER </a>
+                                                </label>
+                                                <label id="page_cruncherID" class="btn btn-border disabled" >
+                                                    <a name="options" id="option3"> PAGE CRUNCHER</a>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h6 style="margin:0px">URL Paster and Page Cruncher are available in <br><a href="{% url 'login' %}">PictureOptimizer PRO</a></h6>
+                                        </div>
+                                    </li>
+                                    <li class="item" style="padding-top:30px">
+                                        <div class="col-md-3">
+                                            <h5>2. Select optimization mode</h5>
+                                        </div>
+                                        <div class="col-md-6" style="padding-left:0px;">
+                                            <div class="btn-group btn-group-justified blocks" data-toggle="buttons">
+                                                <label class="btn active btn-border">
+                                                    <input type="radio" name="optimization_mode" id="optimization_mode1" value="LOSSY"> LOSSY
+                                                </label>
+                                                <label class="btn btn-border">
+                                                    <input type="radio" name="optimization_mode" id="optimization_mode2" value="LOSSLESS"> LOSSLESS
+                                                </label>
+                                                <label class="btn btn-border">
+                                                    <input type="radio" name="optimization_mode" id="optimization_mode3"  value="EXPERT"> EXPERT
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li id="expertPanel" class="item hidden" style="padding-top:30px">
+                                        <div class="col-md-3 col-border">
+                                            <b>Image Quality Settings:</b>
+                                            <div class="form-inline text-left" style="padding-top:20px;padding-left:0px">
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-9" style="padding-left:0px;"> JPEG Quality (1-100):</label>
+                                                    <span class="col-sm-3">
+                                                        <input type="number" name="jpeg_quality" placeholder="px" style="width: 40px">
+                                                    </span>
+
+                                                    <label class="control-label col-sm-9" style="padding-left:0px;">PNG Quality (1-100):</label>
+                                                    <span class="col-sm-3">
+                                                        <input type="number" name="png_quality" placeholder="px"  style="width: 40px">
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3 col-border">
+                                            <label>Preserve Metadata: </label>
+                                            <div class="form-group">
+                                                <div class="col-md-6" style="padding-left:0px;">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" class="check" id="checkAll" name="preserved_metadata"> Check All
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input value="Date" type="checkbox" class="check" name="preserved_metadata"> Date
+                                                        </label>
+                                                    </div>
+
+
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input value="Geotag" type="checkbox" class="check" name="preserved_metadata"> Geotag
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6" style="padding-left:0px;">
+
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input value="Profile" type="checkbox" class="check" name="preserved_metadata"> Profile
+                                                        </label>
+                                                    </div>
+                                                     <div class="checkbox">
+                                                        <label>
+                                                            <input value="Copyright" type="checkbox" class="check" name="preserved_metadata"> Copyright
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input value="Orientation" type="checkbox" class="check" name="preserved_metadata">Orientation
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-border">
+                                            <label style="padding-left:0px;">Automatic Image Orientation: </label>
+                                            <div><input value="AutoOrientation" type="checkbox"  name="auto_orientation">Auto-Orient Images</div>
+
+                                        </div>
+                                        <div class="col-md-3 col-border" style="max-width:170px">
+                                            <label>Chroma Subsampling </label>
+                                            <div style="padding-left:0px;"><input value="4:2:0" type="radio"  name="chroma_subsampling">4:2:0</div>
+                                            <div style="padding-left:0px;"><input value="4:2:2"  type="radio"  name="chroma_subsampling">4:2:2</div>
+                                            <div style="padding-left:0px;"><input value="4:4:4" type="radio"  name="chroma_subsampling">4:4:4</div>
+                                        </div>
+
+                                    </li>
+                                    <li class="item" style="padding-top:30px">
+                                        <div class="col-md-3">
+                                            <h5>3. Resize your images (optional)</h5>
+                                        </div>
+                                        <div class="col-md-6 btn-border" style="pointer-events:none;opacity: 0.4;padding:10px;padding-right:0px;margin-right:0px;cursor: not-allowed;">
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <label for="sort" class="control-label" style="padding-left:10px">
+                                                    Strategy:
+                                                    </label>
+                                                    <select class="form-control" name="resize_type" id="sort" style="padding-left:10px;  background-color:#278EEA;color:white;">
+                                                        <option value="Auto">Auto</option>
+                                                        <option value="Square">Square</option>
+                                                        <option value="Crop">Crop</option>
+                                                        <option value="Landscape">Landscape</option>
+                                                        <option value="Portrait">Portrait</option>
+                                                        <option value="Fit">Fit</option>
+                                                        <option value="Exact">Exact</option>
+                                                        <option value="DontResize" selected>Don't Resize</option>
+                                                    </select>
+
+                                                    <label class="control-label" for="email" style="padding-left:10px">Width:</label>
+                                                    <span style="padding-left:10px">
+                                                        <input type="number" name="resize_type_width" placeholder="px" style="width:60px">
+                                                    </span>
+                                                    <span style="padding-left:10px">
+                                                        <label class="control-label" for="pwd">Height: </label>
+                                                    </span>
+                                                    <input type="number" name="resize_type_height" placeholder="px" style="width:60px">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h6>Image Resizing is available in <a href="{% url 'login' %}">PictureOptimizer PRO</a></h6>
+                                        </div>
+                                    </li>
+                                    <li class="item" style="padding-top:30px">
+                                        <div id="actions" class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-12 text-center">
+                                                    <!-- The fileinput-button span is used to style the file input field as button -->
+                                                    <span class="color-palette btn fileinput-button dropzone" style="width:100%; color:blackcolor: #ccc;border-style: dashed;border-color: #ccc;border-width: 3px;line-height: 150px;text-align: center;background-color:">
+                                                                <i class="fa fa-download fa-3x"></i>
+                                                                <span style="margin-left:10px">Click to upload or drag-and-drop individual images here</span>
+                                                    </span>
+
+                                                    <div class="col-md-12" style="margin-top:20px">
+                                                        <button type="button" class="btn btn-primary start">
+                                                            <i class="glyphicon glyphicon-upload"></i>
+                                                            <span>Upload a ZIP Containing Your Images</span>
+                                                        </button>
+
+                                                       <!-- <span id="start_cancel_button" class="hidden float-right">
+                                                            <button type="button" class="btn btn-success start">
+                                                                <i class="glyphicon glyphicon-upload"></i>
+                                                                <span>Start upload</span>
+                                                            </button>
+                                                            <button type="reset" class="btn btn-warning cancel">
+                                                                <i class="glyphicon glyphicon-ban-circle"></i>
+                                                                <span>Cancel upload</span>
+                                                            </button>
+                                                        </span>-->
+                                                    </div>
+                                                </div>
+                                                 <div>
+
+                                                    <span class="fileupload-process">
+                                                      <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                                          <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                                                      </div>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </form>
+                        </div>
+                        <!-- <div class="box-footer text-center">
+                             <a href=""
+                                class="uppercase">View Details</a>
+                         </div>-->
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="box box-info hidden" id="uploadedPanel">
+                    <div class="box-body">
+                        <div class="col-md-12">
+                            <div class="table table-striped files" id="previews">
+                                <div id="template" class="file-row">
+                                    <!-- This is used as the file preview template -->
+                                    <!--<div class="col-md-2">
+                                        <span class="preview"><img data-dz-thumbnail /></span>
+                                    </div>-->
+
+                                    <div class="col-md-3">
+                                        <p class="name" data-dz-name></p>
+                                        <strong class="error text-danger" data-dz-errormessage></strong>
+                                        <div class="success-message"></div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="col-md-4 originalSize">
+                                            <b>Original Size: </b>
+                                        </div>
+                                        <div class="col-md-4 optSize">
+                                            <b>Optimized size:</b>
+                                        </div>
+                                        <div class="col-md-4 saving">
+                                            <b>% Saving:</b>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <p class="size" data-dz-size></p>
+                                        <div class="progress progress-striped active" role="progressbar" aria-valuemin="0"
+                                             aria-valuemax="100" aria-valuenow="0">
+                                            <div class="progress-bar progress-bar-success" style="width:0%;"
+                                                 data-dz-uploadprogress></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 float-right">
+                                        <!--<span class="btn btn-primary btn-xs btn-flat start">
+                                            <i class="glyphicon glyphicon-upload"></i>
+                                            <span>Start</span>
+                                        </span>
+                                        <span data-dz-remove class="btn btn-xs btn-flat btn-warning cancel">
+                                            <i class="glyphicon glyphicon-ban-circle"></i>
+                                            <span>Cancel</span>
+                                        </span>-->
+                                        <div class="col-md-6" style="margin:0px">
+                                        <span class="btn btn-xs btn-flat btn-success hidden download">
+                                            <i class="glyphicon glyphicon-download"></i>
+                                            <span>Download</span>
+                                        </span>
+                                        </div>
+                                        <div class="col-md-6">
+                                        <span data-dz-remove class="btn btn-xs btn-flat btn-danger delete" style="max-width:90px">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                            <span>Delete</span>
+                                        </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</div></div></div>
+<script>
+        Dropzone.autoDiscover = false;
+        var previewNode = document.querySelector("#template");
+        previewNode.id = "";
+        var previewTemplate = previewNode.parentNode.innerHTML;
+        previewNode.parentNode.removeChild(previewNode);
+
+        var myDropzone = new Dropzone(document.body, {
+          url: "{% url 'account:web_interface_pro_upload_files'%}",
+          thumbnailWidth: 80,
+          thumbnailHeight: 80,
+          height: 100,
+          parallelUploads: 20,
+          previewTemplate: previewTemplate,
+          autoQueue: true,
+          previewsContainer: "#previews",
+          dictDefaultMessage: "",
+          uploadMultiple:false,
+          clickable: ".fileinput-button"
+          });
+
+        myDropzone.on("addedfile", function(file) {
+            $('#start_cancel_button').removeClass('hidden');
+            $('#uploadedPanel').removeClass('hidden');
+          //file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file); };
+        });
+
+
+        myDropzone.on("totaluploadprogress", function(progress) {
+          document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+        });
+
+        myDropzone.on("sending", function(file, xhr, formData) {
+
+            var result = { };
+            $.each($('#selectPanel').serializeArray(), function() {
+                //result[this.name] = this.value;
+                formData.append(this.name, this.value);
+            });
+
+            //formData.append('someParameter', $('#selectPanel').serialize());
+            formData.append('csrfmiddlewaretoken', "{{csrf_token}}");
+
+            document.querySelector("#total-progress").style.opacity = "1";
+
+            //file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
+        });
+        myDropzone.on("success", function(file, response) {
+             //$(file.previewElement).find('.success-message').append(response.name);
+             $(file.previewElement).find('.originalSize').append(response.originalSize)
+             $(file.previewElement).find('.optSize').append(response.modSize)
+             $(file.previewElement).find('.saving').append(response.savings)
+             $(file.previewElement).find('.download').attr('onclick', "window.open('"+response.downloadImageUrl+"', '_blank')")
+        });
+
+        myDropzone.on("queuecomplete", function(progress) {
+          document.querySelector("#total-progress").style.opacity = "0";
+        });
+
+        myDropzone.on("complete", function(file) {
+          $(file.previewElement).find('.download').removeClass('hidden');
+          // $(file.previewElement).find('.cancel').addClass('hidden');
+          // $(file.previewElement).find('.start').addClass('hidden');
+        });
+
+    </script>
+{% endblock %}
+{% block header_content2 %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<style>
+    td > h4
+    {
+        font-style : bold;
+    }
+</style>
+{% endblock %}

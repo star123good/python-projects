@@ -1,0 +1,20 @@
+{% extends "user_base_layout.html" %}
+{% block pageHeader %}Redeem a Coupon Code{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block mainContent %}
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="box box-warning" style="padding:40px">
+            <div class="box-body">
+                <label class="">Enter Coupon Code:</label>
+                <input id="urlDiv" type="text" name="coupon_code" required style="width:100%;height:45px;margin-top:10px;margin-bottom:10px;padding:10px" class="btn-border text-center">
+                <button id="start_button" type="button" class="btn btn-flat btn-block text-capital btn-primary btn-lg text-center">Redeem Coupon Code </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block documentReady %}
+    $('#reservation').daterangepicker();
+{% endblock %}

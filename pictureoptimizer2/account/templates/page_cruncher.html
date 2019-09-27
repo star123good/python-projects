@@ -1,0 +1,362 @@
+{% extends "user_base_layout.html" %}
+{% block pageHeader %}Web Interface PRO — Page Cruncher{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block scripts %}
+<script src="/static/drag_drop/dropzone.js"></script>
+
+ <style>
+ .btn-lg
+ {
+    min-width: 100px;
+ }
+ .blocks .btn
+{
+    padding: 10px 10px;
+    border-radius: 0;
+    border-color: #278EEA;
+    background:white;
+    font-weight:bold;
+}
+.blocks {border-spacing:0px;}
+.box-body li
+{
+    min-height:100px;
+}
+
+.btn.active{ background-color:#278EEA; color:white;font-weight:bold;}
+.btn.active > a
+{
+    color:white;font-weight:bold;
+}
+.btn > a, .box-body > .btn
+{
+    color:#278EEA;
+}
+
+.btn-primary
+{
+    color:white;
+}
+
+.dropzone {
+  color: #ccc;
+  border-style: dashed;
+  border-color: #ccc;
+  border-width: 3px;
+  line-height: 150px;
+  text-align: center;
+  background-color:
+}
+.btn-border
+{
+    border-style: solid;
+    border-color: #278EEA;
+    border-width: 2px;
+}
+.col-border
+{
+    border-style: solid;
+    border-color: #ccc;
+    border-width: 1px;
+    min-height:150px;
+
+}
+.dz-progress {
+              /* progress bar covers file name */
+              display: none !important;
+            }
+        div.table {
+        display: table;
+        }
+        div.table .file-row {
+        display: table-row;
+        }
+        div.table .file-row > div {
+        display: table-cell;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+        padding: 8px;
+        }
+        div.table .file-row:nth-child(odd) {
+        background: #f9f9f9;
+        }
+        /* The total progress gets shown by event listeners */
+        #total-progress {
+        opacity: 0;
+        transition: opacity 0.3s linear;
+        }
+        /* Hide the progress bar when finished */
+        #previews .file-row.dz-success .progress {
+        opacity: 0;
+        transition: opacity 0.3s linear;
+        }
+        /* Hide the delete button initially */
+        #previews .file-row .delete {
+        display: none;
+        }
+        /* Hide the start and cancel buttons and show the delete button */
+        #previews .file-row.dz-success .start,
+        #previews .file-row.dz-success .cancel {
+        display: none;
+        }
+        #previews .file-row.dz-success .delete {
+        display: block;
+        }
+ </style>
+{% endblock %}
+{% block mainContent %}
+<div class="row">
+    <div class="col-md-12 col-sm-3">
+        <div class="alert alert-success alert-dismissible text-center">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+            <h5>Page Cruncher will crawl the provided Web page URL, fetching all images from that URL and providing you with the optimized results.</h5>
+        </div>
+        <div class="box box-info">
+            <div class="box-body">
+                <form class="col-md-12" id="selectPanel" action="{% url 'account:page_cruncher' %}" method="post">
+                    {% csrf_token %}
+                    <ul class="products-list product-list-in-box">
+                        <li class="item" style="padding-top:30px">
+                            <div class="col-md-3">
+                                <h5>1. Select source of images</h5>
+                            </div>
+                            <div class="col-md-8" style="padding-left:0px;">
+                                <div class="btn-group btn-group-justified blocks" data-toggle="buttons">
+                                    <label id="file_uploaderID" class="btn btn-border" onClick = "window.location.href='{% url 'account:file_uploader' %}'">
+                                        <a name="options" id="option1"> FILE UPLOADER</a>
+                                    </label>
+                                    <label id="url_pasterID" class="btn btn-border" onClick = "window.location.href='{% url 'account:url_paster' %}'">
+                                        <a name="options" id="option2" > URL PASTER </a>
+                                    </label>
+                                    <label id="page_cruncherID" class="btn active btn-border" onClick = "window.location.href='{% url 'account:page_cruncher' %}'">
+                                        <a name="options" id="option3"> PAGE CRUNCHER</a>
+                                    </label>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item" style="padding-top:30px">
+                            <div class="col-md-3">
+                                <h5>2. Select optimization mode</h5>
+                            </div>
+                            <div class="col-md-8" style="padding-left:0px;">
+                                <div class="btn-group btn-group-justified blocks" data-toggle="buttons">
+                                    <label class="btn active btn-border">
+                                        <input type="radio" name="optimization_mode" id="optimization_mode1" value="LOSSY"> LOSSY
+                                    </label>
+                                    <label class="btn btn-border">
+                                        <input type="radio" name="optimization_mode" id="optimization_mode2" value="LOSSLESS"> LOSSLESS
+                                    </label>
+                                    <label class="btn btn-border">
+                                        <input type="radio" name="optimization_mode" id="optimization_mode3"  value="EXPERT"> EXPERT
+                                    </label>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="expertPanel" class="item hidden" style="padding-top:30px;">
+                            <div class="col-md-3 col-border">
+                                <b>Image Quality Settings:</b>
+                                <div class="form-inline text-left" style="padding-top:20px;padding-left:0px">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-9" style="padding-left:0px;"> JPEG Quality (1-100):</label>
+                                        <span class="col-sm-3">
+                                            <input type="number" name="jpeg_quality" placeholder="px" style="width: 40px">
+                                        </span>
+
+                                        <label class="control-label col-sm-9" style="padding-left:0px;">PNG Quality (1-100):</label>
+                                        <span class="col-sm-3">
+                                            <input type="number" name="png_quality" placeholder="px"  style="width: 40px">
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-3 col-border">
+                                <label>Preserve Metadata: </label>
+                                <div class="form-group">
+                                    <div class="col-md-6" style="padding-left:0px;">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" class="check" id="checkAll" name="preserved_metadata"> Check All
+                                            </label>
+                                        </div>
+
+                                        <div class="checkbox">
+                                            <label>
+                                                <input value="Date" type="checkbox" class="check" name="preserved_metadata"> Date
+                                            </label>
+                                        </div>
+
+
+                                        <div class="checkbox">
+                                            <label>
+                                                <input value="Geotag" type="checkbox" class="check" name="preserved_metadata"> Geotag
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style="padding-left:0px;">
+
+                                        <div class="checkbox">
+                                            <label>
+                                                <input value="Profile" type="checkbox" class="check" name="preserved_metadata"> Profile
+                                            </label>
+                                        </div>
+                                         <div class="checkbox">
+                                            <label>
+                                                <input value="Copyright" type="checkbox" class="check" name="preserved_metadata"> Copyright
+                                            </label>
+                                        </div>
+
+                                        <div class="checkbox">
+                                            <label>
+                                                <input value="Orientation" type="checkbox" class="check" name="preserved_metadata">Orientation
+                                            </label>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-border">
+                                <label style="padding-left:0px;">Automatic Image Orientation: </label>
+                                <div><input value="AutoOrientation" type="checkbox"  name="auto_orientation">Auto-Orient Images</div>
+
+                            </div>
+                            <div class="col-md-3 col-border" style="max-width:170px">
+                                <label>Chroma Subsampling </label>
+                                <div style="padding-left:0px;"><input value="4:2:0" type="radio"  name="chroma_subsampling">4:2:0</div>
+                                <div style="padding-left:0px;"><input value="4:2:2"  type="radio"  name="chroma_subsampling">4:2:2</div>
+                                <div style="padding-left:0px;"><input value="4:4:4" type="radio"  name="chroma_subsampling">4:4:4</div>
+                            </div>
+
+                        </li>
+                        <li class="item" style="padding-top:30px">
+                            <div class="col-md-3">
+                                <h5>3. Resize your images (optional)</h5>
+                            </div>
+                            <div class="col-md-7 btn-border" style="padding:10px;padding-right:0px;margin-right:0px;">
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <label for="sort" class="control-label" style="padding-left:10px">
+                                        Strategy:
+                                        </label>
+                                        <select class="form-control" name="resize_type" id="sort" style="padding-left:10px;  background-color:#278EEA;color:white;">
+                                            <option value="Auto">Auto</option>
+                                            <option value="Square">Square</option>
+                                            <option value="Crop">Crop</option>
+                                            <option value="Landscape">Landscape</option>
+                                            <option value="Portrait">Portrait</option>
+                                            <option value="Fit">Fit</option>
+                                            <option value="Exact">Exact</option>
+                                            <option value="DontResize" selected>Don't Resize</option>
+                                        </select>
+
+                                        <label class="control-label" for="email" style="padding-left:10px">Width:</label>
+                                        <span style="padding-left:10px">
+                                            <input type="number" name="resize_type_width" placeholder="px" style="width:60px">
+                                        </span>
+                                        <span style="padding-left:10px">
+                                            <label class="control-label" for="pwd">Height: </label>
+                                        </span>
+                                        <input type="number" name="resize_type_height"  placeholder="px" style="width:60px">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item" style="padding-top:30px">
+                            <div id="actions" class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-10 text-center col-md-offset-1">
+                                        <input id="urlDiv" type="text" placeholder="Please enter address of a webpage you'd like to optimize..." name="page_url" required style="width:100%;height:45px;margin-top:10px;margin-bottom:10px;padding:10px" class="btn-border">
+                                        <button id="start_button" type="button" class="btn btn-flat btn-block text-capital btn-primary btn-lg disabled">OPTIMIZE THIS WEBPAGE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="box box-info hidden" id="uploadedPanel">
+    <div class="box-body">
+        <div class="col-md-12">
+            <div class="table table-striped files" id="previews">
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block documentReady %}
+    $("#checkAll").click(function () {
+        $(".check").prop('checked', $(this).prop('checked'));
+    });
+    $("#optimization_mode3").click(function () {
+        $('#expertPanel').removeClass('hidden');
+    });
+    $('input:radio[name="optimization_mode"]').change(function() {
+
+            if ($(this).val() == 'EXPERT') {
+                $('#expertPanel').removeClass('hidden');
+            }
+            else{
+                $('#expertPanel').addClass('hidden');
+            }
+    });
+    function previewDiv(name, originalSize, modSize, savings, perSaving, downloadImageUrl)
+    {
+            var string = '<div class="file-row">';
+                    string += '<div class="col-md-2"><b>File Name: </b>'+name+'</div><div class="col-md-2"><b>Original Size: </b>'+originalSize+'</div><div class="col-md-2"><b>Optimized size	: </b>'+modSize+'</div>';
+                    string += '<div class="col-md-2"><b>Savings: </b>'+savings+'</div><div class="col-md-2"><b>% Savings: </b>'+perSaving+'</div>';
+                    string += ' <div class="col-md-1 float-right">';
+                    //string += '<p class="name" data-dz-name></p>';
+                   // string += '<strong class="error text-danger" data-dz-errormessage></strong>';
+                   // string += '<div class="success-message"><b>Original Size: </b>'+originalSize+'<br>'+modSize+'<br>'+savings+'<br>'+perSaving+' </div>';
+                   // string += '</div>';
+                    string += '<div class="col-md-1 float-right">';
+                    string += '<div class="col-md-1" style="margin:0px">';
+                    string += '<span class="btn btn-xs btn-flat btn-success download" onclick="window.open(\''+downloadImageUrl+'\')">';
+                    string += '<i class="glyphicon glyphicon-download"></i>';
+                    string += '<span>Download</span>';
+                    string += '</span>';
+                    string += '</div>';
+                    //string += '<div class="col-md-3" style="margin-top:1px">';
+                    //string += '<span data-dz-remove class="btn btn-xs btn-flat btn-danger delete" style="max-width:90px">';
+                    //string += '<i class="glyphicon glyphicon-trash"></i>';
+                    //string += '<span>Delete</span>';
+                    //string += '</span>';
+                    string += '</div></div></div>';
+            return string;
+    }
+    $("#start_button").on("click", function() {
+
+        var formData = new FormData();
+        var result = {};
+        $.each($('#selectPanel').serializeArray(), function() {
+            formData.append(this.name, this.value);
+        });
+        formData.append('csrfmiddlewaretoken', "{{csrf_token}}");
+        $.ajax({
+            url: "{% url 'account:page_cruncher_uploader_ajax' %}",
+            type: 'POST',
+            contentType:false,
+            cache: false,
+            processData: false,
+            // pass the form in the FormData constructor to send all the data inside the form
+            data: formData,
+            success: function(data) {
+                var str = previewDiv(data.name, data.originalSize, data.modSize, data.savings, data.perSaving, data.downloadImageUrl);
+                $('#previews').append(str);
+                $('#uploadedPanel').removeClass('hidden');
+            },
+            error: function(xhr, result, errorThrown){
+                alert("Error: "+ XMLHttpRequest.responseText);
+            }
+        });
+    });
+$("#urlDiv").on('input', function() {
+    $('#start_button').removeClass('disabled');
+});
+{% endblock %}

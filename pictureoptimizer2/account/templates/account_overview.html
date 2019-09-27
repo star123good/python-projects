@@ -1,0 +1,131 @@
+{% extends "user_base_layout.html" %}
+{% block pageHeader %}Account Overview{% endblock %}
+{% block breadcrumb %}{% endblock %}
+{% block documentReady %}
+$(".knob").knob({
+   "readOnly":true
+});
+{% endblock %}
+{% block mainContent %}
+<div class="row">
+    <div class="col-md-12 col-sm-3">
+        <div class="alert alert-success alert-dismissible text-center">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+            <h4><b>An email has been sent to {{user.email}}</b></h4>
+            <h5>Verify your account by clicking on the verification link contained in the email in order to start using our PRO services.</h5>
+            <br>
+            <button class="btn btn-sm btn-primary btn-flat" style="width:200px">Resend link</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-15 col-md-3">
+          <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="fa fa-usd"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Plan Level</span>
+              <span class="info-box-number">{{ paln_level }}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-15 col-md-3">
+          <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-file"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Max Filesize</span>
+              <span class="info-box-number">{{ max_upload_size }} MB</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+
+        <div class="col-md-15 col-md-3">
+          <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-database"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Quota</span>
+              <span class="info-box-number">{{ quota }}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-15 col-md-3">
+          <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-hourglass-3"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Current Usage</span>
+              <span class="info-box-number">{{ total_file_size }} KB</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-15 col-md-3">
+          <div class="info-box">
+            <span class="info-box-icon bg-blue"><i class="fa fa-calendar"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Next Billed On</span>
+              <span class="info-box-number">Never</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="box box-info">
+                <div class="box-header with-border">
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                class="fa fa-times"></i></button>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-xs-3 col-md-3 text-center"></div>
+                        <div class="col-xs-3 col-md-3 text-center">
+                            <input type="text" class="knob" value="0%" data-min="0" data-max="100" data-width="200"
+                                   data-height="200" data-fgColor="#00a65a">
+
+                            <div class="knob-label"><h4>Current Quota Usage</h4></div>
+                        </div>
+                        <div class="col-xs-3 col-md-3 text-center">
+                            <input type="text" class="knob" value="80%" data-min="0" data-max="100" data-width="200"
+                                   data-height="200" data-fgColor="#00a65a">
+
+                            <div class="knob-label"><h4>Your Average Savings</h4></div>
+                        </div>
+                        <div class="col-xs-3 col-md-3 text-center">
+                    </div>
+                </div>
+               <div class="box-footer text-center">
+                    <h4>Overall, you have optimized {{ total_file_size }} KB of images ({{ file_counter }} files) saving {{ optimized_file_size }} KB ({{ optimized_percent }}%) total file size.</h4>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

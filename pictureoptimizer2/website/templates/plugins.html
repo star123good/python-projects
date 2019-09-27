@@ -1,0 +1,231 @@
+{% extends 'website_base.html' %}
+{% block header_content %}
+<script src="/static/website/js/home.js"></script>
+<link rel="stylesheet" href="/static/website/css/home.css">
+<style>
+.ba-slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.ba-slider img {
+    width: 100%;
+    display:block;
+}
+
+.resize {
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+}
+
+
+.handle { /* Thin line seperator */
+  position:absolute;
+  left:50%;
+  top:0;
+  bottom:0;
+  width:4px;
+  margin-left:-2px;
+
+  background: rgba(0,0,0,.5);
+  cursor: ew-resize;
+}
+
+.handle:after {  /* Big orange knob  */
+    position: absolute;
+    top: 50%;
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+
+    content:'\21d4';
+    color:white;
+    font-weight:bold;
+    font-size:36px;
+    text-align:center;
+    line-height:64px;
+
+    background: #ffb800; /* @orange */
+    border:1px solid #e6a600; /* darken(@orange, 5%) */
+    border-radius: 50%;
+    transition:all 0.3s ease;
+    box-shadow:
+      0 2px 6px rgba(0,0,0,.3),
+      inset 0 2px 0 rgba(255,255,255,.5),
+      inset 0 60px 50px -30px #ffd466; /* lighten(@orange, 20%)*/
+}
+
+.draggable:after {
+    width: 48px;
+    height: 48px;
+    margin: -24px 0 0 -24px;
+    line-height:48px;
+    font-size:30px;
+}
+
+</style>
+{% endblock %}
+{% block base_container %}
+
+<div class="background_class" style="height:400px;">
+    <div>
+
+        <div style="background-image: url(/static/images/slide_1.jpg); background-size: 100% 400px;height:400px;">
+            <div class="overlay-gradient"></div>
+            <div class="container">
+                <div class="col-md-12 col-md-offset-0 text-center slider-text" style="height:400px;">
+                    <div style="padding-top:150px;">
+                        <h3 style="font-size:40px;color:white;">Image Optimization for WordPress & Magento</h3>
+                        <h4 style="color:white;">The fastest and most reliable way to optimize images and speed up your
+                            blog or business</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!--<div class="background_class" style="padding: 7em 0;padding-bottom:40px;margin-top:70px;">
+    <div class="container">
+        <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px">
+            <div id="myCarousel" class="carousel fdi-Carousel slide">
+                &lt;!&ndash; Carousel items &ndash;&gt;
+                <div class="carousel fdi-Carousel slide" id="eventCarousel" data-interval="0">
+                    <div class="carousel-inner onebyone-carosel">
+                        <div class="item active">
+                            <div class="col-md-3">
+                                &lt;!&ndash;<a href="#"><img src="http://placehold.it/250x250" class="img-responsive center-block"></a>&ndash;&gt;
+                                <h5>Totally Worth the Subscription</h5>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3">
+                                &lt;!&ndash;<a href="#"><img src="http://placehold.it/250x250" class="img-responsive center-block"></a>&ndash;&gt;
+                                <h5>Totally Worth the Subscription</h5>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3">
+                                <a href="#"><img src="http://placehold.it/250x250" class="img-responsive center-block"></a>
+                                <h5>Totally Worth the Subscription</h5>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3">
+                                <a href="#"><img src="http://placehold.it/250x250" class="img-responsive center-block"></a>
+                                <h5>Totally Worth the Subscription</h5>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3">
+                                <a href="#"><img src="http://placehold.it/250x250" class="img-responsive center-block"></a>
+                                <h5>Totally Worth the Subscription</h5>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3">
+                                <a href="#"><img src="http://placehold.it/250x250" class="img-responsive center-block"></a>
+                                <h5>Totally Worth the Subscription</h5>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3">
+                                <a href="#"><img src="http://placehold.it/250x250" class="img-responsive center-block"></a>
+                                <h5>Totally Worth the Subscription</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#eventCarousel" data-slide="prev"></a>
+                    <a class="right carousel-control" href="#eventCarousel" data-slide="next"></a>
+                </div>
+                &lt;!&ndash;/carousel-inner&ndash;&gt;
+            </div>&lt;!&ndash;/myCarousel&ndash;&gt;
+        </div>
+    </div>
+</div>-->
+<div class="background_class" style="padding: 7em 0;padding-bottom:40px;padding-top:70px;">
+    <div class="container">
+        <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px">
+            <div class="col-md-6 animate-box">
+                <img ng-click="showVideo('wp')"
+                     srcset="https://kraken-nekkraug.netdna-ssl.com/assets/images/plugins/wp-screencast.png 1x, https://kraken-nekkraug.netdna-ssl.com/assets/images/plugins/wp-screencast@2x.png 2x">
+            </div>
+
+            <div class="col-md-6 animate-box">
+                <h3>PictureOptimization.com for WordPress</h3>
+                <p>Connect your WordPress blog to PictureOptimization.com API with ease by installing our WordPress
+                    plugin, and
+                    stop worrying about bloated, slow-loading pages. Once installed, all new image uploads will be
+                    automatically opimized on-the-fly. Existing image uploads can be optimized using our Bulk Tool.
+
+                    Getting started with the plugin is very easy; watch the screencast for the quickest way to get
+                    going, and find additional information on our WordPress Plugin Page.</p>
+                <a href="#" class="btn btn-primary btn-outline with-arrow">Download WordPress Plugin</a>
+                <a href="{% url 'website:pricing' %}" class="btn btn-primary btn-outline with-arrow">See Plans and
+                    Pricing</a>
+            </div>
+        </div>
+        <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px">
+            <div class="col-md-6 animate-box">
+                <img ng-click="showVideo('magento')"
+                     srcset="https://kraken-nekkraug.netdna-ssl.com/assets/images/plugins/magento-screencast.png 1x, https://kraken-nekkraug.netdna-ssl.com/assets/images/plugins/magento-screencast@2x.png 2x">
+            </div>
+
+            <div class="col-md-6 animate-box">
+                <h3>PictureOptimization.com for Magento</h3>
+                <p>Greatly speed up your Magento store and thus increase your conversions with ease using the
+                    PictureOptimization.com Magento Extension, which will allow you to automatically optimize your media
+                    images,
+                    skin images and product image cache.
+
+                    Watch the screencast to learn how to use our Magento extension, and find out more on our Magento
+                    Extension page on Magento Connect. Feel free to reach out to Support with any questions you
+                    might have.</p>
+                <a href="#" class="btn btn-primary btn-outline with-arrow">Download Magento Plugin</a>
+                <a href="{% url 'website:pricing' %}" class="btn btn-primary btn-outline with-arrow">See Plans and
+                    Pricing</a>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}
+{% block header_content2 %}
+<style>
+ .carousel-inner.onebyone-carosel { margin: auto; width: 100%; }
+.onebyone-carosel .active.left { left: -25.00%; }
+.onebyone-carosel .active.right { left: 25.00%; }
+.onebyone-carosel .next { left: 25.00%; }
+.onebyone-carosel .prev { left: -25.00%; }
+</style>
+<script>
+    $(document).ready(function() {
+    $('#myCarousel').carousel({
+        interval: 2000
+    })
+        $('.carousel-inner .item').each(function () {
+            var next = $(this).next();
+      if (!next.length) {
+        next = $(this).siblings(':first');
+      }
+      next.children(':first-child').clone().appendTo($(this));
+
+      for (var i=0;i<2;i++) {
+        next=next.next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+
+        next.children(':first-child').clone().appendTo($(this));
+      }
+        });
+});
+</script>
+{% endblock %}

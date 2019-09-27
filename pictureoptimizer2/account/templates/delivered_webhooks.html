@@ -1,0 +1,63 @@
+{% extends "user_base_layout.html" %}
+{% block pageHeader %}Delivered Webhooks{% endblock %}
+{% block breadcrumb %}{% endblock %}
+
+{% block mainContent %}
+<div class="row">
+    <div class="col-md-12 col-sm-3">
+        <div class="alert alert-success alert-dismissible text-center">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+            <h4><b>If you are performing API requests with the callback_url option specified, those callbacks will be listed here.</b></h4>
+            <h5>We only store the history of the last 30 days.</h5>
+
+        </div>
+        <div class="box box-info">
+            <div class="box-body">
+                <div class="row">
+                    <form class="form-horizontal">
+                        <div class="col-md-3 pull-left">
+                            <div class="input-group">
+                                  <input type="text" name="q" class="form-control" placeholder="Search...">
+                                  <span class="input-group-btn">
+                                        <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                                        </button>
+                                      </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 pull-right">
+                            <div class="form-group">
+                                <div class="input-group">
+                                  <label class="control-label col-sm-4">Date range:</label>
+                                    <div class="col-sm-8">
+                                      <input type="text" class="form-control" id="reservation">
+                                    </div>
+                                </div>
+                                            <!-- /.input group -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="box-footer text-center">
+                 <a href=""
+                    class="uppercase">View Details</a>
+             </div>-->
+        </div>
+        <div class="alert alert-default alert-dismissible text-center">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                <h4>No webhooks found.</h4>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block documentReady %}
+    $('#reservation').daterangepicker();
+{% endblock %}

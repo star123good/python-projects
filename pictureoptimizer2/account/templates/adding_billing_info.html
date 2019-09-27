@@ -1,0 +1,255 @@
+{% extends "user_base_layout.html" %}
+{% block pageHeader %}Add Billing Information{% endblock %}
+{% block mainContent %}
+        
+<div class="row">
+    <div class="col-md-10 col-sm-3 col-md-offset-1">
+        <div class="alert alert-warning alert-dismissible text-center">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5>Please enter your billing information below.</h5>
+            <h5><b>You will NOT be billed until you have selected a plan.</b></h5>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+
+        <div class="box box-info" style="padding:40px">
+            <div class="box-header with-border">
+                <div class="row display-tr">
+                    <div class="panel-title pull-left"><h2>Payment Details</h2></div>
+                    <div class="display-td">
+                        <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+                    </div>
+                </div>
+            </div>
+            <div class="box-body">
+                <form role="form" action="{% url 'subscription' %}" id="payment-form" method="POST">
+                     {% csrf_token %}
+                    <div class="row">
+                        <input
+                            name="token" id="token"
+                            hidden
+                        />
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <div class="input-group">
+                                    <input
+                                            type="email"
+                                            class="form-control"
+                                            name="email"
+                                            id="email"
+                                            placeholder="Your email address"
+                                            value="{{ user_email }}"
+                                            required autofocus
+                                    />
+                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-md-3">
+                            <div class="form-group">
+                                <label for="payment_type">Price Per Unit</label>
+                                <select
+                                        class="form-control"
+                                        name="payment_type"
+                                        id="payment_type"
+                                        value=""
+                                        required
+                                >
+                                    <option value="" selected disabled>Choose Price</option>
+                                    <option value="STARTER" {% if payment_type == "STARTER" %}selected{% endif %}>STARTER - $9/month</option>
+                                    <option value="BASIC" {% if payment_type == "BASIC" %}selected{% endif %}>BASIC - $27/month</option>
+                                    <option value="PRO" {% if payment_type == "PRO" %}selected{% endif %}>PRO - $74/month</option>
+                                    <option value="UNLIMITED" {% if payment_type == "UNLIMITED" %}selected{% endif %}>UNLIMITED - $140/month</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-md-3">
+                            <div class="form-group">
+                                <label for="payment_interval">Billing Interval</label>
+                                <select
+                                        class="form-control"
+                                        name="payment_interval"
+                                        id="payment_interval"
+                                        value=""
+                                        required
+                                >
+                                    <option value="" selected disabled>Choose Interval</option>
+                                    <option value="Monthly">Monthly</option>
+                                    <option value="ThreeMonth">Every 3 months</option>
+                                    <option value="SixMonth">Every 6 months</option>
+                                    <option value="Yearly">Yearly</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="cardNumber">CARD NUMBER</label>
+                                <div class="input-group">
+                                    <input
+                                            type="tel"
+                                            class="form-control"
+                                            name="cardNumber"
+                                            id="cardNumber"
+                                            placeholder="Valid Card Number"
+                                            autocomplete="cc-number"
+                                            value=""
+                                            required
+                                    />
+                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-7 col-md-7">
+                            <div class="form-group">
+                                <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span
+                                        class="visible-xs-inline">EXP</span> DATE</label>
+                                <input
+                                        type="tel"
+                                        id="cardExpiry"
+                                        class="form-control"
+                                        name="cardExpiry"
+                                        placeholder="MM / YY"
+                                        autocomplete="cc-exp"
+                                        required
+                                />
+                            </div>
+                        </div>
+                        <div class="col-xs-5 col-md-5 pull-right">
+                            <div class="form-group">
+                                <label for="cardCVC">CV CODE</label>
+                                <input
+                                        type="tel"
+                                        class="form-control"
+                                        name="cardCVC"
+                                        id="cardCVC"
+                                        placeholder="CVC"
+                                        autocomplete="cc-csc"
+                                        required
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="couponCode">CARD SECURITY CODE</label>
+                                <input type="text" class="form-control" name="cardSecurityCode" id="cardSecurityCode"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label for="couponCode">FIRST NAME</label>
+                                <input type="text" class="form-control" name="first_name" id="first_name"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label for="couponCode">LAST NAME</label>
+                                <input type="text" class="form-control" name="last_name" id="last_name"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="couponCode">Company (optional):</label>
+                                <input type="text" class="form-control" name="company"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label for="couponCode">Address</label>
+                                <input type="text" class="form-control" name="address"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label for="couponCode">ZIP/Postal code</label>
+                                <input type="text" class="form-control" name="postalCode"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label for="couponCode">City</label>
+                                <input type="text" class="form-control" name="city"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label for="couponCode">Country</label>
+                                <input type="text" class="form-control" name="country"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button class="subscribe btn btn-success btn-lg btn-block" id="submitBtn" type="submit">Start
+                                Subscription
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+,
+{% endblock %}
+{% block scripts %}
+<style>
+    .credit-card-box .panel-title {
+    display: inline;
+    font-weight: bold;
+}
+.credit-card-box .form-control.error {
+    border-color: red;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(255,0,0,0.6);
+}
+.credit-card-box label.error {
+  font-weight: bold;
+  color: red;
+  padding: 2px 8px;
+  margin-top: 2px;
+}
+.credit-card-box .payment-errors {
+  font-weight: bold;
+  color: red;
+  padding: 2px 8px;
+  margin-top: 2px;
+}
+.credit-card-box label {
+    display: block;
+}
+/* The old "center div vertically" hack */
+.credit-card-box .display-table {
+    display: table;
+}
+.credit-card-box .display-tr {
+    display: table-row;
+}
+.credit-card-box .display-td {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+}
+
+</style>
+{% endblock %}
+<script>
+
+</script>

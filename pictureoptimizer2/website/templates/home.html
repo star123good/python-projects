@@ -1,0 +1,437 @@
+{% extends 'website_base.html' %}
+{% block header_content %}
+<script src="/static/website/js/home.js"></script>
+<link rel="stylesheet" href="/static/website/css/home.css">
+<style>
+.ba-slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.ba-slider img {
+    width: 100%;
+    display:block;
+}
+
+.resize {
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+}
+
+
+.handle { /* Thin line seperator */
+  position:absolute;
+  left:50%;
+  top:0;
+  bottom:0;
+  width:4px;
+  margin-left:-2px;
+
+  background: rgba(0,0,0,.5);
+  cursor: ew-resize;
+}
+
+.handle:after {  /* Big orange knob  */
+    position: absolute;
+    top: 50%;
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+
+    content:'\21d4';
+    color:white;
+    font-weight:bold;
+    font-size:36px;
+    text-align:center;
+    line-height:64px;
+
+    background: #ffb800; /* @orange */
+    border:1px solid #e6a600; /* darken(@orange, 5%) */
+    border-radius: 50%;
+    transition:all 0.3s ease;
+    box-shadow:
+      0 2px 6px rgba(0,0,0,.3),
+      inset 0 2px 0 rgba(255,255,255,.5),
+      inset 0 60px 50px -30px #ffd466; /* lighten(@orange, 20%)*/
+}
+
+.draggable:after {
+    width: 48px;
+    height: 48px;
+    margin: -24px 0 0 -24px;
+    line-height:48px;
+    font-size:30px;
+}
+
+</style>
+{% endblock %}
+{% block base_container %}
+
+<aside id="fh5co-hero" class="js-fullheight">
+		<div class="flexslider js-fullheight">
+			<ul class="slides">
+		   	<li style="background-image: url(/static/images/slide_1.jpg);">
+		   		<div class="overlay-gradient"></div>
+		   		<div class="container" >
+		   			<div class="col-md-12 col-md-offset-0 text-center slider-text">
+		   				<div class="slider-text-inner" style="width:80%;padding-top:150px;padding-bottom:150px;">
+		   					<h3 style="font-size:40px">We optimize your images and accelerate your websites</h3>
+                            <h4>PictureOptimizer.com is a robust, ultra-fast image optimizer and compressor with best-in-class algorithms.
+We'll save you bandwidth and storage space and will dramatically improve your website’s load times.</h4>
+		   					<p><a href="{%url 'website:pricing' %}" class="btn btn-primary btn-md">See Plans and Pricing</a>
+		   					<a href="{%url 'website:web_interface' %}" class="btn btn-primary btn-md">Try Free Web Interface</a></p>
+		   				</div>
+		   			</div>
+		   		</div>
+		   	</li>
+		  	</ul>
+	  	</div>
+	</aside>
+    <div class="background_class" style="padding: 7em 0;padding-bottom:40px;padding-top:40px;">
+        <div class="container">
+            <div class="row">
+                <div class="text-center fh5co-heading">
+                    <h2>How well does PictureOptimizer.com perform?</h2>
+                    <p>We like to think the only way to get your image files smaller after optimizing them with PictureOptimizer is to delete them.</p>
+                    <div class="animate-box fadeInUp animated hover-box" style="background:white;height:420px;">
+                        <div style="width:100%;height:350px;">
+                            <div class="ba-slider">
+                              <img src="/static/website/imagetests/optimized/Ch_4/ch4_bluewater1.jpg" alt="" width="100%" height="350px">
+
+                              <div class="resize">
+                                <img src="/static/website/imagetests/unoptimized/Ch_4/ch4_bluewater1.jpg" alt="" width="100%" height="350px">
+
+                              </div>
+                              <span class="handle"></span>
+                            </div>
+
+                            <button class="btn btn-outline" style="float:left;margin-left:30px;margin-top:10px">Optimized by PictureOptimizer.com</button>
+                            <button class="btn btn-outline" style="float:right;margin-right:30px;margin-top:10px">Unoptimized Image</button>
+                        </div>
+                       <!-- <div style="height:70px;background:white;margin:30px;margin-top:60px;text-align:left">
+                            Original Size: <b>518 KB</b><br>
+                            Optimized Size:<b>205 KB (61% reduction)</b>
+                        </div>-->
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="background_class" style="padding: 7em 0;padding-bottom:40px;padding-top:40px;">
+    <div class="container">
+        <div class="row">
+            <div class="text-center fh5co-heading">
+                <h2>Everyone Needs Image Optimization</h2>
+                <p>Designers, Developers, WordPress and Magento users - even enthusiasts all over the world use PictureOptimizer.com</p>
+            </div>
+        </div>
+        <div class="row animate-box fadeInUp animated hover-box text-center" style="background:white;padding:30px">
+				<div class="col-md-4 animate-box">
+					<div class="services">
+                        <img src="/static/website/images/designers.svg" alt="designers" height="70px">
+						<div class="desc">
+
+							<h3>Designers</h3>
+							<p>Done with your page or layout? No you're not! Run them through PictureOptimizer.com, then you're really done.</p>
+						</div>
+					</div>
+                    <a href="{%url 'website:web_interface' %}" class="btn btn-primary btn-sm">Use Web Interface</a>
+				</div>
+				<div class="col-md-4 animate-box">
+					<div class="services">
+						<img src="/static/website/images/developers.svg" alt="designers" height="70px">
+						<div class="desc">
+							<h3>Developers</h3>
+							<p>Optimize and resize images from within your applications using our fully-featured and easy-to-use API.</p>
+						</div>
+					</div>
+                    <a href="{%url 'website:api_doc' %}" class="btn btn-primary btn-sm">Use API Docs</a>
+				</div>
+				<div class="col-md-4 animate-box">
+					<div class="services">
+						<img src="/static/website/images/plugins.svg" alt="designers" height="70px">
+						<div class="desc">
+							<h3>WordPress and Magento</h3>
+							<p>Are you a WordPress or Magento user? Get our official plugins and and speed up your websites now.</p>
+						</div>
+					</div>
+                    <a href="{%url 'website:plugins' %}" class="btn btn-primary btn-sm">Discover Our Plugins</a>
+				</div>
+        </div>
+    </div>
+    </div>
+    <div id="fh5co-pricing-section" style="background: #ECF0F1;padding-bottom:40px;padding-top:40px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 text-center fh5co-heading animate-box">
+                    <h2>Simple and Flexible Pricing</h2>
+                    <p>All plans start out as a FREE Account which comes with 100 MB of testing quota. No credit card is required to sign up.
+                    </p>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="pricing" style="margin-bottom:0px;">
+                    <div class="col-md-3 animate-box">
+                        <div class="price-box">
+                            <h2 class="pricing-plan">Starter</h2>
+                            <div class="price"><sup class="currency">$</sup>9<small>/month</small></div>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                            <a href="{%url 'account:adding_billing_info' 'STARTER' %}" class="btn btn-select-plan btn-sm">Select Plan</a>
+                            <!-- <form action="{% url 'charge' %}" method="post">
+                                {% csrf_token %}
+                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                    data-key="{{ key }}"
+                                    data-description="A Django Charge"
+                                    data-amount="500"
+                                    data-locale="auto"></script>
+                            </form> -->
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 animate-box">
+                        <div class="price-box">
+                            <h2 class="pricing-plan">Basic</h2>
+                            <div class="price"><sup class="currency">$</sup>27<small>/month</small></div>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                            <a href="{%url 'account:adding_billing_info' 'BASIC' %}" class="btn btn-select-plan btn-sm">Select Plan</a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 animate-box">
+                        <div class="price-box popular">
+                            <h2 class="pricing-plan pricing-plan-offer">Pro <span>Best Offer</span></h2>
+                            <div class="price"><sup class="currency">$</sup>74<small>/month</small></div>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                            <a href="{%url 'account:adding_billing_info' 'PRO' %}" class="btn btn-select-plan btn-sm">Select Plan</a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 animate-box">
+                        <div class="price-box">
+                            <h2 class="pricing-plan">Unlimited</h2>
+                            <div class="price"><sup class="currency">$</sup>140<small>/month</small></div>
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                            <a href="{%url 'account:adding_billing_info' 'UNLIMITED' %}" class="btn btn-select-plan btn-sm">Select Plan</a>
+                        </div>
+                    </div>
+                </div>
+                <div>All plans come equipped with: Full API Access, Web Interface PRO, WordPress Plugin, Magento Extension and PictureOptimizer Cloud Storage.</div>
+                <div style="padding:30px"><a href="{% url 'login' %}" class="btn btn-danger btn-lg">Get Started Free </a></div>
+            </div>
+        </div>
+	</div>
+    <div class="background_class" style="padding: 7em 0;padding-bottom:40px;padding-top:40px;">
+        <div class="container">
+            <div class="row">
+                <div class="text-center fh5co-heading">
+                    <h2>Image Optimization is Important, and You Know It</h2>
+                    <p>62% of today's Internet traffic is made up of images. Optimize them with PictureOptimizer.com and save both money and time.</p>
+                </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px">
+                    <div class="col-md-6 animate-box">
+                            <img src="/static/website/images/quality@2x.png" alt="designers" height="200px;">
+                    </div>
+
+                    <div class="col-md-6 animate-box">
+                        <h3>Reduce the Weight and Not the Quality</h3>
+                        You need to be confident that the quality of the results you are getting have not been compromised for the sake of getting the smallest possible file size. While it is possible to reduce any image to a tiny fraction of its original size, that approach often leads to a serious amount of visual degradation. PictureOptimizer.com's optimization pipeline offers tremendous savings, with results that stand up to close inspection, each and every time
+                    </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px;margin-top:3px;">
+
+                    <div class="col-md-6 animate-box">
+                        <h3>Let us do the Hard Work</h3>
+                        All optimization is carried out by our powerful servers, freeing you from having to utilize your own. Our cutting-edge infrastructure has been designed from the ground up with a single purpose in mind - to optimize your images blazingly fast. Focus on your business in the best way you know how, we'll worry about making your images faster and better - every single one of them has potential savings.
+                    </div>
+                     <div class="col-md-6 animate-box">
+                            <img src="/static/website/images/servers@2x.png" alt="designers" height="200px;">
+                    </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px;margin-top:3px;">
+                    <div class="col-md-6 animate-box">
+                            <img src="/static/website/images/speed-up@2x.png" alt="designers" height="200px;">
+                    </div>
+
+                    <div class="col-md-6 animate-box">
+                        <h3>Speed up Your Apps and Websites</h3>
+                        User experience is all about speed. A faster site will make your users happier. Happier users will buy more of your product and refer you more business. A faster site will get you more traffic and gain you more leads - all of which will contribute to the success of your business. If your site is image-rich, you will need to be extra vigilant in order to keep request sizes down. PictureOptimizer.com will help you with that.
+                    </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px;margin-top:3px;">
+
+                    <div class="col-md-6 animate-box">
+                        <h3>Optimize for Mobile and Tablets</h3>
+                        With more and more people accessing your content through tablet or mobile devices, reducing your Time to Glass should be one of your top priorities. Dont't waste your user's precious bandwidth with oversized, unoptimized images - they won't stick around. You need to serve them images that are not carrying any extra, unnecessary weight. Using PictureOptimizer.com's resizing feature you can even generate optimized image sets for all your target devices.
+                    </div>
+                     <div class="col-md-6 animate-box">
+                            <img src="/static/website/images/mobile@2x.png" alt="designers" height="200px;">
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="background_class" style="padding: 7em 0;padding-bottom:40px;padding-top:40px;">
+        <div class="container">
+            <div class="row">
+                <div class="text-center fh5co-heading">
+                    <h3>Don't subject your visitors to long waits when visiting your site - they won't stick around.</h3>
+
+                </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px">
+                    <div class="col-md-6 animate-box">
+                            <img src="/static/website/images/tco@2x.png" alt="designers" height="200px;">
+                    </div>
+
+                    <div class="col-md-6 animate-box">
+                        <h3>Reduce Your Operating Costs</h3>
+                        How much do you spend on bandwidth and storage? We can't answer that, but we can say that you are spending more than you need to be. Using PictureOptimizer.com you can cut those expenses down to more than half. Your images will occupy about 50% space on average (often less) and your bandwidth savings could be an absolute knockout depending on how many page impressions you get.
+                    </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px;margin-top:3px;">
+
+                    <div class="col-md-6 animate-box">
+                        <h3>Improve Your Search Ranking</h3>
+                        Since 2010, Google has weighted a site's loading speed as an important criteria in determining how it ranks in relation to other comparable sites. In other words, faster loading sites are looked upon more favourably than their slower counterparts. PictureOptimizer.com can help you improve your search ranking by significantly speeding up your pages' load times. Just check out your Google PageSpeed Insights report before and after you've run your images through our service.
+                    </div>
+                     <div class="col-md-6 animate-box">
+                            <img src="/static/website/images/seo@2x.png" alt="designers" height="200px;">
+                    </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px;margin-top:3px;">
+                    <div class="col-md-6 animate-box">
+                            <img src="/static/website/images/cdn@2x.png" alt="designers" height="200px;">
+                    </div>
+
+                    <div class="col-md-6 animate-box">
+                        <h3>Slash Your CDN Bills by Half or More</h3>
+                        Are your CDN bills starting to substantially cut into your profit margins? Use PictureOptimizer.com to optimize your image assets and knock those bills down by at least half. Your users won't notice any difference (other than faster loading times and less waiting around for stuff to download) but you'll notice a ​huge​ difference when it comes to your CDN spend over time.
+                    </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px;margin-top:3px;">
+
+                    <div class="col-md-6 animate-box">
+                        <h3>Supercharge Your WordPress</h3>
+                        Got WordPress? Install our plugin and get it loading faster right away. Our WordPress plugin allows you to optimize all images uploaded to your business or blog. Existing images can be optimized from within the Media Library. Any newly uploaded images are optimized on-the-fly. Any generated thumbnails are optimized too. Install PictureOptimizer Plugin for a quick and simple way give your WordPress blog an SEO bump!
+                    </div>
+                     <div class="col-md-6 animate-box">
+                            <img src="/static/website/images/wordpress@2x.png" alt="designers" height="200px;">
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="fh5co-cta background_class" style="background-image: url(/static/images/slide_2.jpg);margin-top:60px;">
+        <div class="overlay"></div>
+            <div class="container">
+                <div class="col-md-12 text-center animate-box">
+                    <h3>Save money on bandwidth and storage space and accelerate your websites now</h3>
+                    <h4>Powerful API, Web Interface PRO, WordPress and Magento Plugins and PictureOptimizer Cloud Storage</h4>
+                    <p><a href="{%url 'website:pricing' %}" class="btn btn-primary btn-outline with-arrow">See Plans and Pricing<i class="icon-arrow-right"></i></a>
+                    <a href="{%url 'website:web_interface' %}" class="btn btn-primary btn-outline with-arrow">Try Free Web Interface <i class="icon-arrow-right"></i></a></p>
+                </div>
+            </div>
+    </div>
+	<div id="fh5co-services-section" style="padding: 7em 0;padding-bottom:40px;padding-top:60px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1 text-center fh5co-heading animate-box">
+					<h2>PictureOptimizer.io at a Glance</h2>
+					<p>Nine reasons why you don't need to look any further than PictureOptimizer.io </p>
+				</div>
+			</div>
+			<div class="row text-center" style="background:white;font-size:15px;" >
+				<div class="col-md-4 animate-box">
+					<div class="services">
+
+						<div class="desc">
+                            <img src="/static/website/images/api.svg" alt="designers" height="100px;">
+							<h3>Developer-Friendly API</h3>
+							<p>No matter which programming language you use PictureOptimizer API will integrate seamlessly with all your services.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 animate-box">
+					<div class="services">
+						<div class="desc">
+                            <img src="/static/website/images/cube.svg" alt="designers" height="100px;">
+							<h3>WordPress and Magento Plugins</h3>
+							<p>Greatly speed up your blog or business, while saving on both bandwidth and disk space using our official plugins.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 animate-box">
+					<div class="services">
+						<div class="desc">
+                            <img src="/static/website/images/machines.svg" alt="designers" height="100px;">
+							<h3>Powerful Infrastructure</h3>
+						    <p>Our hardware will let you to get the job done quickly and without consuming a single CPU cycle on your own machines.</p>
+                        </div>
+					</div>
+				</div>
+				<div class="col-md-4 animate-box">
+					<div class="services">
+						<div class="desc">
+                            <img src="/static/website/images/first-class.svg" alt="designers" height="100px;">
+							<h3>First Class Compression</h3>
+						    <p>With its best-in-class algorithms PictureOptimizer gives you an incredible level of image compression and optimization.</p>
+                        </div>
+					</div>
+				</div>
+				<div class="col-md-4 animate-box">
+					<div class="services">
+						<div class="desc">
+                            <img src="/static/website/images/storage.svg" alt="designers" height="100px;">
+							<h3>API External Storage</h3>
+                            <p>PictureOptimizer API allows you to easily store optimized images directly in S3, Azure, Cloud Files and SoftLayer.</p>
+                        </div>
+					</div>
+				</div>
+				<div class="col-md-4 animate-box">
+					<div class="services">
+
+						<div class="desc">
+                            <img src="/static/website/images/lossy.svg" alt="designers" height="100px;">
+							<h3>Lossy Optimization Options</h3>
+						    <p>If you decide to sacrifice just a fraction of image quality, you will be able to save up to 90% of the initial file weight.</p>
+                        </div>
+					</div>
+				</div>
+
+                <div class="col-md-4 animate-box">
+					<div class="services">
+						<div class="desc">
+                            <img src="/static/website/images/image-resizing.svg" alt="designers" height="100px;">
+							<h3>Image Resizing</h3>
+						    <p>Want to have your images resized before optimization? PictureOptimizer.com offers you several methods for resizing and cropping.</p>
+                        </div>
+					</div>
+				</div>
+				<div class="col-md-4 animate-box">
+					<div class="services">
+						<div class="desc">
+                            <img src="/static/website/images/web-interface.svg" alt="designers" height="100px;">
+							<h3>Free Web Interface</h3>
+                            <p>In case you have a smaller amount of images to be optimized you can always use our FREE Web Interface.</p>
+                        </div>
+					</div>
+				</div>
+				<div class="col-md-4 animate-box">
+					<div class="services">
+
+						<div class="desc">
+                            <img src="/static/website/images/support.svg" alt="designers" height="100px;">
+							<h3>Great User Support</h3>
+						    <p>Get fast and friendly customer support. No auto-responses or bots. We'll get straight to the point and help you out.</p>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+{% endblock %}

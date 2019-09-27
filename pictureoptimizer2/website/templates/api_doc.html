@@ -1,0 +1,227 @@
+{% extends 'website_base.html' %}
+{% block header_content %}
+<script src="/static/website/js/home.js"></script>
+<link rel="stylesheet" href="/static/website/css/home.css">
+<style>
+.ba-slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.ba-slider img {
+    width: 100%;
+    display:block;
+}
+
+.resize {
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+}
+
+
+.handle { /* Thin line seperator */
+  position:absolute;
+  left:50%;
+  top:0;
+  bottom:0;
+  width:4px;
+  margin-left:-2px;
+
+  background: rgba(0,0,0,.5);
+  cursor: ew-resize;
+}
+
+.handle:after {  /* Big orange knob  */
+    position: absolute;
+    top: 50%;
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+
+    content:'\21d4';
+    color:white;
+    font-weight:bold;
+    font-size:36px;
+    text-align:center;
+    line-height:64px;
+
+    background: #ffb800; /* @orange */
+    border:1px solid #e6a600; /* darken(@orange, 5%) */
+    border-radius: 50%;
+    transition:all 0.3s ease;
+    box-shadow:
+      0 2px 6px rgba(0,0,0,.3),
+      inset 0 2px 0 rgba(255,255,255,.5),
+      inset 0 60px 50px -30px #ffd466; /* lighten(@orange, 20%)*/
+}
+
+.draggable:after {
+    width: 48px;
+    height: 48px;
+    margin: -24px 0 0 -24px;
+    line-height:48px;
+    font-size:30px;
+}
+
+</style>
+{% endblock %}
+{% block base_container %}
+
+<div class="background_class" style="padding: 7em 0;padding-bottom:40px;padding-top:70px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 text-center fh5co-heading">
+                <h2>API Reference and Developer Documentation</h2>
+            </div>
+        </div>
+
+        <div class="row hover-box text-left" style="background:white;padding-top:30px;margin:0px">
+            <div class="col-md-3" style="margin:0px;padding:0px">
+                <div class="single category" style="margin:0px">
+                    <strong><h3 class="side-title">The Basics</h3></strong>
+                    <ul class="list-unstyled">
+                        <li><a href="" title="">Getting Started <span class="pull-right">13</span></a></li>
+                        <li><a href="" title="">Integration Libraries <span class="pull-right">13</span></a></li>
+                        <li><a href="" title="">Direct Upload <span class="pull-right">13</span></a></li>
+                        <li><a href="" title="">Wait vs. Callback URL <span class="pull-right">13</span></a></li>
+                        <li><a href="" title="">Lossy Image Optimization <span class="pull-right">13</span></a></li>
+                        <li><a href="" title="">Lossless Image Optimization<span class="pull-right">13</span></a></li>
+                        <li><a href="" title="">API Sandbox <span class="pull-right">13</span></a></li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="row" id="main">
+                    <div class="col-sm-12 col-md-12 well well-sm" id="content">
+                        <h4 class="padding-left">Getting Started</h4>
+                    </div>
+                </div>
+
+                <p class="padding-left">To plug into the power of PO API you need to Sign Up for PO raken API services
+                    and obtain your unique API Key and API Secret. You will find those in your Account under the API
+                    Credentials section. Once you have set-up your Account, you can start using PO API in your
+                    applications.
+                </p>
+                <div class="row  padding-left">
+                    <div class="col-md-11 alert alert-success">
+                        <h4><b>We love helping customers get up and running with our system</b></h4>
+
+                        <p>Should you have any questions about PO API simply contact us at pictureoptimozer.com</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 well well-sm">
+                        <h4 class="padding-left">How To Use</h4>
+                    </div>
+                </div>
+
+                <p class="padding-left">PO supports JPEG, PNG, GIF (including animated GIFs) and SVG images. You can
+                    optimize your images in two ways - by providing a URL of the image you want to optimize or by
+                    uploading an image file directly to PO API.
+
+                    The first option (image URL) is great for images that are already in production or any other place
+                    on the Internet. The second one (direct upload) is ideal for your deployment process, build script
+                    or the on-the-fly processing of your user's uploads where you don't have the images available online
+                    yet.
+                </p>
+                <div class="row  padding-left">
+                    <div class="col-md-11 alert alert-success">
+                        <p>We strongly recommend that you try out our lossy optimization.
+It will drastically reduce the weight of your files, and you may not even notice any visible difference.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+{% block header_content2 %}
+<style>
+ .single {
+padding: 30px 15px;
+margin-top: 40px;
+background: #fcfcfc;
+border: 1px solid #f0f0f0; }
+.single h3.side-title {
+margin: 0;
+margin-bottom: 10px;
+padding: 0;
+font-size: 20px;
+color: #333;
+ }
+.single h3.side-title:after {
+content: '';
+width: 60px;
+height: 1px;
+background: #ff173c;
+display: block;
+margin-top: 6px; }
+
+.single ul {
+margin-bottom: 0; }
+.single li a {
+color: #666;
+font-size: 14px;
+
+border-bottom: 1px solid #f0f0f0;
+line-height: 40px;
+display: block;
+text-decoration: none; }
+.single li a:hover {
+color: #ff173c; }
+.single li:last-child a {
+border-bottom: 0; }
+.padding-left{
+padding-left:40px
+
+}
+
+.callout-info
+{
+
+}
+</style>
+<script>
+    $(document).ready(function() {
+    $('#myCarousel').carousel({
+        interval: 2000
+    })
+        $('.carousel-inner .item').each(function () {
+            var next = $(this).next();
+      if (!next.length) {
+        next = $(this).siblings(':first');
+      }
+      next.children(':first-child').clone().appendTo($(this));
+
+      for (var i=0;i<2;i++) {
+        next=next.next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+
+        next.children(':first-child').clone().appendTo($(this));
+      }
+        });
+});
+</script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<style>
+    td > h4
+    {
+        font-style : bold;
+    }
+</style>
+{% endblock %}

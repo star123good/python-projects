@@ -1,0 +1,208 @@
+{% extends 'website_base.html' %}
+{% block header_content %}
+<script src="/static/website/js/home.js"></script>
+<link rel="stylesheet" href="/static/website/css/home.css">
+{% endblock %}
+{% block base_container %}
+
+    <div class="background_class" style="padding: 7em 0;padding-bottom:40px;padding-top:70px;">
+        <div class="container">
+            <div class="row">
+                <div class="text-center fh5co-heading">
+                    <h2>Where Power and Simplicity Collide</h2>
+                    <p>The best image optimization SaaS available now augmented with advanced features.</p>
+                </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px">
+                    <div class="col-md-6 animate-box">
+                            <img src="/static/website/images/feature_1.PNG" alt="designers" height="200px;">
+                    </div>
+
+                    <div class="col-md-6 animate-box">
+                        <h3>The Most Reliable Image Optimization API</h3>
+                        <p>Kraken.io API handles millions of requests per day without a hitch. That is because we have engineered reliability and performance at all levels of the stack - and we never stop looking for ways to improve. At Kraken.io, we take immense pride in our engineering practices, incorporating both advanced system monitoring and QoS monitoring.</p>
+                        <a href="#" class="btn btn-primary btn-outline with-arrow">Read API Docs</a>
+                    </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px;margin-top:3px;">
+
+                    <div class="col-md-6 animate-box">
+                        <h3>Dedicated Infrastructure at Your Service</h3>
+                        <p>Send all your images to the powerful, cutting-edge hardware powering Kraken.io and get them optimized in no time. We selected dedicated hardware specifically for the resource-hungry task of image optimization, so optimizing all your images will not consume a single CPU cycle on your own machines. Just send your images to us, we’ll do the work. It’s that simple.</p>
+                        <a href="#" class="btn btn-primary btn-outline with-arrow">More About Our Technology</a>
+                    </div>
+                     <div class="col-md-6 animate-box">
+                            <img src="/static/website/images/servers@2x.png" alt="designers" height="200px;">
+                    </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px;margin-top:3px;">
+                    <div class="col-md-6 animate-box">
+                            <img src="/static/website/images/feature_2.PNG" alt="designers" height="200px;">
+                    </div>
+
+                    <div class="col-md-6 animate-box">
+                        <h3>Web Interface PRO</h3>
+                        <p>Paste a list of image URLs into a simple text area and Kraken.io will download them all, optimize them, and give you back a ZIP archive. Enter a website URL into the Page Cruncher and Kraken.io will grab all the images it finds there, including background images from CSS, optimize them, and give you back a ZIP archive. If you like, you can have the images placed into a folder structure matching that of each image URL. Quick, simple and fun.</p>
+                        <a href="#" class="btn btn-primary btn-outline with-arrow">Try Free Web Interface</a>
+                    </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px;margin-top:3px;">
+
+                    <div class="col-md-6 animate-box">
+                        <h3>Image Resizing</h3>
+                        <p>Many images are larger, in terms of dimensions, than they need to be for a given use-case or purpose. When you need to generate sets of images in different sizes or dimensions, our easy-to-use image resizing interface has you covered. Just specify your required dimensions and pick one of several strategies for resizing your images, prior to optimization.</p>
+                        <a href="#" class="btn btn-primary btn-outline with-arrow">Read API Docs</a>
+                    </div>
+                     <div class="col-md-6 animate-box">
+                            <img src="/static/website/images/feature_3.PNG" alt="designers" height="200px;">
+                    </div>
+            </div>
+             <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px;margin-top:3px;">
+                    <div class="col-md-6 animate-box">
+                            <img src="/static/website/images/feature_4.PNG" alt="designers" height="200px;">
+                    </div>
+
+                    <div class="col-md-6 animate-box">
+                        <h3>Kraken.io ZIP Uploader</h3>
+                        <p>Upload a ZIP archive by dragging it into our Web Interface. Kraken.io will decompress it, optimize all images found within the archive and notify you once the job has completed. A huge convenience if you have a large number of images to optimize in one go, or if you want to keep your folder structure intact. You can even close your browser window and come back later to download the processed ZIP archive.</p>
+                        <a href="#" class="btn btn-primary btn-outline with-arrow">Sign Up Now</a>
+                    </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px;margin-top:3px;">
+
+                    <div class="col-md-6 animate-box">
+                        <h3>No Vendor Lock-In</h3>
+                        <p>Using a CDN? Kraken.io does not force you to use any particular vendor, giving you the freedom to change your CDN provider whenever you like. Kraken.io even supports pushing optimized images to your favourite Cloud Storage provider like AWS S3, Rackspace CloudFiles, Microsoft Azure and SoftLayer, allowing for even greater flexibility in managing your assets.</p>
+                        <a href="#" class="btn btn-primary btn-outline with-arrow">Read API Docs</a>
+                    </div>
+                     <div class="col-md-6 animate-box">
+                            <img src="/static/website/images/feature_5.png" alt="designers" height="200px;">
+                    </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px;margin-top:3px;">
+                    <div class="col-md-6 animate-box">
+                            <img src="/static/website/images/feature_6.png" alt="designers" height="200px;">
+                    </div>
+
+                    <div class="col-md-6 animate-box">
+                        <h3>Event Callbacks via Webhooks</h3>
+                        <p>Do you prefer service providers which support HTTP callbacks? So do we, and so we built a world-class webhook delivery system. Kraken.io supports simple event-notifications via HTTP POST whenever something happens, such as completion of an optimization. Use Kraken.io webhooks to notify your app of when a process has completed, rather than keeping numerous connections open simultaneously.</p>
+                        <a href="#" class="btn btn-primary btn-outline with-arrow">Sign Up Now</a>
+                    </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px;margin-top:3px;">
+
+                    <div class="col-md-6 animate-box">
+                        <h3>Support, When You Need It</h3>
+                        <p>Facing a problem? Need advice on implementation or workflows? We're always here for you, in person. Just hit us up any time and expect a prompt, courteous and helpful response. We'll do our best to help even if the problem lies somewhere on your system. We're here to help you get the job done and ensure smooth operation between systems, around the clock. Just click on one of the many "Contact Support" buttons found on our site and start typing away.</p>
+                        <a href="#" class="btn btn-primary btn-outline with-arrow">Contact Support</a>
+                    </div>
+                     <div class="col-md-6 animate-box">
+                            <img src="/static/website/images/feature_8.png" alt="designers" height="200px;">
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="background_class" style="padding: 7em 0;padding-bottom:40px;padding-top:40px;">
+        <div class="container">
+            <div class="row">
+                <div class="text-center fh5co-heading">
+                    <h3>Kraken.io PRO</h3>
+                    <p>Powerful, sleek and easy-to-use. Optimize and manage your images from anywhere, anytime.</p>
+                </div>
+            </div>
+            <div class="row animate-box fadeInUp animated hover-box text-left" style="background:white;padding:60px">
+                <div class="borders pro-features cf">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Features</th>
+                            <th>Kraken Free</th>
+                            <th>Kraken PRO</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <td></td>
+                            <td><a class="btn btn-primary" href="/web-interface">Try for Free</a><br><span>FREE Forever</span></td>
+                            <td><a class="btn btn-info" href="/pricing">Plans and Pricing</a><br><span>Starting at <strong>$5</strong> / mo.</span>
+                            </td>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        <tr>
+                            <td><span class="glyphicons glyphicons-dashboard"></span><h4><b>Maximum File Size</b></h4>
+                                <p>Optimize larger images of up to 32 MB in size</p></td>
+                            <td>1 MB</td>
+                            <td><strong class="max-filesize">32 MB</strong></td>
+                        </tr>
+                        <tr>
+                            <td><span class="glyphicons glyphicons-picture"></span><h4><b>Intelligent Lossy
+                                Optimization</b></h4>
+                                <p>The most advanced perceptually lossless image recompression</p></td>
+                            <td><span class="glyphicon glyphicon-ok-sign text-success"></span></td>
+                            <td><span class="glyphicon glyphicon-ok-sign text-success"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="glyphicons glyphicons-life-preserver"></span><h4><b>Fast User Support</b></h4>
+                                <p>Fast and friendly customer support, seven days a week</p></td>
+                            <td><span class="glyphicon glyphicon-ok-sign text-success"></span></td>
+                            <td><span class="glyphicon glyphicon-ok-sign text-success"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="glyphicons glyphicons-cogwheels"></span><h4><b>Full API Access</b></h4>
+                                <p>Plug your applications into the powerful Kraken API</p></td>
+                            <td>—</td>
+                            <td><span class="glyphicon glyphicon-ok-sign text-success"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="glyphicons glyphicons-imac"></span><h4><b>Web Interface PRO</b></h4>
+                                <p>URL Paster, Page Cruncher, Dropbox Storage and more</p></td>
+                            <td>—</td>
+                            <td><span class="glyphicon glyphicon-ok-sign text-success"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="glyphicons glyphicons-compressed"></span><h4><b>ZIP Uploader</b></h4>
+                                <p>Upload a ZIP of images and get it back with images optimized</p></td>
+                            <td>—</td>
+                            <td><span class="glyphicon glyphicon-ok-sign text-success"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="glyphicons glyphicons-fullscreen"></span><h4><b>Image Resizing</b></h4>
+                                <p>Resize images using one of several strategies</p></td>
+                            <td>—</td>
+                            <td><span class="glyphicon glyphicon-ok-sign text-success"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="glyphicons glyphicons-electrical-plug"></span><h4><b>WordPress and Magento
+                                Plugins</b></h4>
+                                <p>Greatly speed up your blog or business</p></td>
+                            <td>—</td>
+                            <td><span class="glyphicon glyphicon-ok-sign text-success"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="glyphicons glyphicons-charts"></span><h4><b>Optimization Statistics</b></h4>
+                                <p>View your daily optimization statistics</p></td>
+                            <td>—</td>
+                            <td><span class="glyphicon glyphicon-ok-sign text-success"></span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+{% block header_content2 %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+<style>
+    td > h4
+    {
+        font-style : bold;
+    }
+</style>
+{% endblock %}
