@@ -56,7 +56,7 @@ class IndirSpider(scrapy.Spider):
     # after login, scrape the frist page
     def after_login(self, response):
         if authentication_failed(response):
-            self.logger.error("Login failed")
+            self.logger.error("Login failed.")
             return
 
         # continue scraping with authenticated session...
