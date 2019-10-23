@@ -39,11 +39,11 @@ def authentication_failed(response):
 # running command : "scrapy crawl indir"
 class IndirSpider(scrapy.Spider):
     name = 'indir'
-    base_url = 'https://'
+    base_url = 'https://www...'
     target_root = 'indir'
-    target_url = 'http://' + target_root + '/'
+    target_url = 'http://.../' + target_root + '/'
     start_urls = [base_url+'wp-login.php']
-    default_url = base_url+''
+    default_url = base_url+'.../'
 
     # spider from login page
     def parse(self, response):
@@ -56,7 +56,7 @@ class IndirSpider(scrapy.Spider):
     # after login, scrape the frist page
     def after_login(self, response):
         if authentication_failed(response):
-            self.logger.error("Login failed.")
+            self.logger.error("Login failed")
             return
 
         # continue scraping with authenticated session...
