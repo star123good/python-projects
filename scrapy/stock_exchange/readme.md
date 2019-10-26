@@ -1,0 +1,17 @@
+scrapy crawl stock -o stock.csv
+scrapy crawl nyse -o nyse.csv
+scrapy crawl nasdaq -o nasdaq.csv
+scrapy crawl tokyo -o tokyo.csv
+scrapy crawl tokyo_jp -o tokyo_jp.csv
+scrapy crawl shanghai -o shanghai.csv
+scrapy crawl shanghai_cn -o shanghai_cn.csv
+scrapy crawl hongkong -o hongkong.csv
+scrapy crawl hongkong_cn -o hongkong_cn.csv
+scrapy crawl euronext -o euronext.csv
+scrapy crawl euronext_live -o euronext_live.csv
+scrapy crawl london -o london.csv
+scrapy crawl london_live -o london_live.csv
+scrapy crawl shenzhen -o shenzhen.csv
+scrapy crawl shenzhen_cn -o shenzhen_cn.csv
+scrapy crawl toronto -o toronto.csv
+scrapy crawl bombay -o bombay.csv
