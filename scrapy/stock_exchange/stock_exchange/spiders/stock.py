@@ -6,11 +6,11 @@ from ..common_analyze import anlayze_exchange
 class StockSpider(scrapy.Spider):
     name = 'stock'
     # allowed_domains = ['en.wikipedia.org/wiki']
-    start_urls = ['']
+    start_urls = ['https://en.wikipedia.org/wiki/List_of_stock_exchanges']
     link_text_pattern = 'exchange'
     th_text_pattern = 'stock exchange'
     link_href_pattern = '/wiki/'
-    link_href_replace_pattern = ''
+    link_href_replace_pattern = 'https://en.wikipedia.org/wiki/'
 
 
     # parse
