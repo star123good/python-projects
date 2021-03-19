@@ -9,7 +9,7 @@ dj-stripe==1.2.3
 Django==1.11.6
 django-filter==2.0.0
 django-toolbelt==0.0.1
-djangorestframework==3.9.0
+djangorestframework==3.11.2
 djangorestframework-filters==0.10.2
 enum34==1.1.6
 gunicorn==19.9.0
